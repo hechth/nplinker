@@ -24,7 +24,7 @@ from .class_info.runcanopus import run_canopus
 from .genomics import loadBGC_from_cluster_files
 from .genomics import make_mibig_bgc_dict
 from .logconfig import LogConfig
-from .metabolomics import load_dataset
+from .metabolomics.metabolomics import load_dataset
 from .pairedomics.downloader import Downloader
 from .pairedomics.downloader import download_and_extract_mibig_json
 from .pairedomics.downloader import generate_strain_mappings

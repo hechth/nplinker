@@ -14,7 +14,7 @@
 
 from sortedcontainers import SortedList
 from ...logconfig import LogConfig
-from ...metabolomics import mols_to_spectra
+from ...metabolomics.metabolomics import mols_to_spectra
 from ...parsers.mgf import LoadMGF
 from .rosetta_functions import fast_cosine
 

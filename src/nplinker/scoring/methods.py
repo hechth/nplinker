@@ -20,8 +20,8 @@ import numpy as np
 from ..genomics import BGC
 from ..genomics import GCF
 from ..logconfig import LogConfig
-from ..metabolomics import MolecularFamily
-from ..metabolomics import Spectrum
+from ..metabolomics.metabolomics import MolecularFamily
+from ..metabolomics.metabolomics import Spectrum
 from ..pickler import load_pickled_data
 from ..pickler import save_pickled_data
 from ..scoring.rosetta.rosetta import Rosetta

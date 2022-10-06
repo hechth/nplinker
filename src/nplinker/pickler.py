@@ -17,8 +17,8 @@ import pickle
 from .genomics import BGC
 from .genomics import GCF
 from .logconfig import LogConfig
-from .metabolomics import MolecularFamily
-from .metabolomics import Spectrum
+from .metabolomics.metabolomics import MolecularFamily
+from .metabolomics.metabolomics import Spectrum
 
 
 logger = LogConfig.getLogger(__file__)

@@ -41,8 +41,8 @@ except ImportError:
     )
 
 from ..genomics import GCF
-from ..metabolomics import MolecularFamily
-from ..metabolomics import Spectrum
+from ..metabolomics.metabolomics import MolecularFamily
+from ..metabolomics.metabolomics import Spectrum
 from .data_linking_functions import calc_correlation_matrix
 from .data_linking_functions import calc_likelihood_matrix
 from .data_linking_functions import link_prob

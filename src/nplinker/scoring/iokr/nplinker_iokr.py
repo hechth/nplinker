@@ -17,7 +17,7 @@ import time
 import numpy
 from nplinker.genomics import GCF
 from nplinker.logconfig import LogConfig
-from nplinker.metabolomics import MolecularFamily
+from nplinker.metabolomics.metabolomics import MolecularFamily
 from . import iokr_opt
 from . import iokrdata as iokrdataserver
 from . import mk_fprints as fingerprint

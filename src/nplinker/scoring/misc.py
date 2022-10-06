@@ -212,7 +212,7 @@ def aa_scoring(spectrum, gcf_like, tol=0.01):
     """
     Check for the prescence of AA mass shifts in the spectrum
     """
-    from nplinker.metabolomics import read_aa_losses
+    from nplinker.metabolomics.metabolomics import read_aa_losses
     aa_loss_file = 'aa_residues.csv'
     aa_losses = read_aa_losses(aa_loss_file)
 

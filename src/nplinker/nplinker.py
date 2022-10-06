@@ -21,8 +21,8 @@ from .genomics import BGC
 from .genomics import GCF
 from .loader import DatasetLoader
 from .logconfig import LogConfig
-from .metabolomics import MolecularFamily
-from .metabolomics import Spectrum
+from .metabolomics.metabolomics import MolecularFamily
+from .metabolomics.metabolomics import Spectrum
 from .pickler import save_pickled_data
 from .scoring.methods import LinkCollection
 from .scoring.methods import MetcalfScoring

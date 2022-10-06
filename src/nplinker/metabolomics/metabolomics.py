@@ -15,13 +15,13 @@
 import csv
 import os
 import re
-from .annotations import GNPS_DATA_COLUMNS
-from .annotations import GNPS_KEY
-from .annotations import create_gnps_annotation
-from .logconfig import LogConfig
-from .parsers.mgf import LoadMGF
-from .strains import StrainCollection
-from .utils import sqrt_normalise
+from ..annotations import GNPS_DATA_COLUMNS
+from ..annotations import GNPS_KEY
+from ..annotations import create_gnps_annotation
+from ..logconfig import LogConfig
+from ..parsers.mgf import LoadMGF
+from ..strains import StrainCollection
+from ..utils import sqrt_normalise
 
 
 logger = LogConfig.getLogger(__file__)
