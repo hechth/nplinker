@@ -89,13 +89,26 @@ def load_dataset(strains,
     spec_dict = load_spectra(mgf_file, edges_file)
 
     # spectra = GNPSSpectrumLoader(mgf_file).spectra()
-    # above returns a list, create a dict indexed by spectrum_id to make
-    # the rest of the parsing a bit simpler
+    # # above returns a list, create a dict indexed by spectrum_id to make
+    # # the rest of the parsing a bit simpler
     # spec_dict = {spec.spectrum_id: spec for spec in spectra}
 
     # add edges info to the spectra
     molfams = _make_families(spec_dict.values())
+    
+    def sort_method(x):
+        return x.id # len(x.spectra)
+    
+    molfams.sort(key = sort_method, reverse = True)
     # molfams = GNPSMolecularFamilyLoader(edges_file).families()
+
+    # # link fams and spectra
+    # for fam in molfams:
+    #     for spec_id  in fam.spectra_ids:
+    #         spec_dict[spec_id].family = fam
+    #         spec_dict[spec_id].family_id = fam.family_id
+    #         fam.add_spectrum(spec_dict[spec_id])
+
 
     unknown_strains = load_gnps(strains, nodes_file, quant_table_file,
                                 metadata_table_file, ext_metadata_parsing,

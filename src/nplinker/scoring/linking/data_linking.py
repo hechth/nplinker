@@ -251,7 +251,7 @@ class DataLinks():
             # if no singletons included or present in the dataset, just take the number
             # of regular molfams instead
             num_of_singletons = 0
-            num_unique_fams = len(family_ids)
+            num_unique_fams = len(family_ids) - 1
 
         M_fam_strain = np.zeros((num_unique_fams, self.M_spec_strain.shape[1]))
         strain_fam_labels = []
@@ -275,14 +275,14 @@ class DataLinks():
             strain_fam_labels.append(fam_id)
             strain_fam_index.append(i)
 
-        add_singleton_entries = -1 in family_ids
-        # TODO: i think this breaks stuff below due to mismatches in the number of rows
-        # in the dataframes and matrices if there are no -1 family ids.
-        # discovered when trying to write some code to test scoring. is this ever
-        # likely to happen with a real dataset??
-        if add_singleton_entries:
-            strain_fam_labels.append([-1] * num_of_singletons)
-            strain_fam_index.append(i + 1)
+        # add_singleton_entries = -1 in family_ids
+        # # TODO: i think this breaks stuff below due to mismatches in the number of rows
+        # # in the dataframes and matrices if there are no -1 family ids.
+        # # discovered when trying to write some code to test scoring. is this ever
+        # # likely to happen with a real dataset??
+        # if add_singleton_entries:
+        #     strain_fam_labels.append([-1] * num_of_singletons)
+        #     strain_fam_index.append(i + 1)
 
         # only looking for co-occurence, hence only 1 or 0
         M_fam_strain[M_fam_strain > 1] = 1
@@ -293,9 +293,11 @@ class DataLinks():
         self.mapping_fam["original family id"] = strain_fam_labels
         self.mapping_fam["no of strains"] = np.sum(self.M_fam_strain, axis=1)
         num_members = [x[0].shape[0] for x in self.family_members]
-        # see above
-        if add_singleton_entries:
-            num_members.append(num_of_singletons)
+        
+        # # see above
+        # if add_singleton_entries:
+        #     num_members.append(num_of_singletons)
+
         self.mapping_fam["no of members"] = num_members
         return self.family_members
 

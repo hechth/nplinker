@@ -2,7 +2,9 @@ import pytest
 from nplinker.metabolomics.metabolomics import load_dataset
 from nplinker.metabolomics.metabolomics import load_spectra
 from nplinker.metabolomics.metabolomics import _make_families
+from nplinker.metabolomics.singleton_family import SingletonFamily
 from nplinker.strain_collection import StrainCollection
+
 
 from . import DATA_DIR
 
@@ -19,9 +21,11 @@ def spec_with_families(spec_dict) -> dict:
     _make_families(spec_dict.values())
     return spec_dict
 
+
 @pytest.fixture
 def molecular_families(spec_dict) -> dict:
     return _make_families(spec_dict.values())
+
 
 def test_load_spectra(spec_dict):
     assert len(spec_dict.keys()) > 0
@@ -47,3 +51,8 @@ def test_load_dataset():
 def test_make_families(spec_dict):
     families = _make_families(spec_dict.values())
     assert len(families) == 25769
+
+
+def test_count_non_singleton_families(molecular_families):
+    actual = list(filter(lambda x: not isinstance(x, SingletonFamily), molecular_families))
+    assert len(actual) == 29
