@@ -2,7 +2,6 @@ from typing_extensions import Self
 
 from nplinker.metabolomics.spectrum import Spectrum
 from nplinker.strain_collection import StrainCollection
-from nplinker.strains import Strain
 
 class MolecularFamily():
 
@@ -55,3 +54,22 @@ class MolecularFamily():
 
     def __hash__(self) -> int:
         return hash(self.id)
+
+
+def map_spectra_to_families(spec_dict: dict[int, Spectrum], molecular_families: list[MolecularFamily]):
+    """Map the spectra to the molecular families.
+
+    Args:
+        spec_dict(dict[int, Spectrum]): Dictionary mapping integer to Spectra.
+        molecular_families(list[MolecularFamily]): _description_
+
+    Examples:
+        >>> 
+        """
+    for i, x in enumerate(molecular_families):
+        x.id = i
+        for spec_id in x.spectra_ids:
+            x.add_spectrum(spec_dict[spec_id])
+            spec_dict[spec_id].family = x
+            spec_dict[spec_id].family_id = x.id
+            
