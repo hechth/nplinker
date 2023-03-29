@@ -4,7 +4,8 @@ import pytest
 from nplinker.metabolomics.gnps.gnps_molecular_family_loader import \
     GNPSMolecularFamilyLoader
 from nplinker.metabolomics.metabolomics import make_families
-from nplinker.metabolomics.molecular_family import MolecularFamily
+from nplinker.metabolomics.molecular_family import MolecularFamily, map_spectra_to_families
+from nplinker.metabolomics.spectrum import Spectrum
 from .. import DATA_DIR
 
 
@@ -29,10 +30,7 @@ def test_families_are_identical(spec_dict, molecular_families):
 
     actual.sort(key= lambda x: min(x.spectra_ids))
 
-    for i, x in enumerate(actual):
-        x.id = i
-        for spec_id in x.spectra_ids:
-            x.add_spectrum(spec_dict[spec_id])
+    map_spectra_to_families(spec_dict, actual)
 
 
     for x in molecular_families:
@@ -40,3 +38,4 @@ def test_families_are_identical(spec_dict, molecular_families):
             x.spectra_ids.add(spec.spectrum_id)
 
     numpy.testing.assert_array_equal(actual, molecular_families)
+

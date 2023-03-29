@@ -4,6 +4,7 @@ import pytest
 from nplinker.loader import DatasetLoader
 from nplinker.metabolomics.gnps.gnps_extractor import GNPSExtractor
 from nplinker.metabolomics.gnps.gnps_spectrum_loader import GNPSSpectrumLoader
+from nplinker.metabolomics.gnps.gnps_molecular_family_loader import GNPSMolecularFamilyLoader
 from nplinker.strain_collection import StrainCollection
 from . import DATA_DIR
 
@@ -64,10 +65,11 @@ def test_load_metabolomics(config):
     sut._load_metabolomics()
 
     expected_spectra = GNPSSpectrumLoader(sut.mgf_file).spectra()
+    expected_families = GNPSMolecularFamilyLoader(sut.edges_file).families()
 
     #HH TODO: switch to different comparison as soon as strains are implemented
-    assert len(sut.spectra) == len(expected_spectra)
-    assert len(sut.molfams) == 429
+    assert sut.spectra == expected_spectra
+    assert sut.molfams == expected_families
 
 def test_has_strain_mappings(config):
     sut = DatasetLoader(config)
